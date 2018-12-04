@@ -106,16 +106,40 @@ from  booktest.models import BookInfo, HeroInfo
 #     book2 = BookInfo.objects.order_by('-bread')
 #     print(book2)
 
+# if __name__ == '__main__':
+#     # 更新
+#     hero = HeroInfo.objects.get(id=19)
+#     hero.hname = '猪无能'
+#     hero.save()
+#
+#     # 返回是更新行数
+#     res = HeroInfo.objects.filter(hname='沙悟净').update(hname='沙僧')
+#     print(res)
+#
+#     # 删除
+#     hero = HeroInfo.objects.get(id=13)
+#     hero.delete()
+#
+#     HeroInfo.objects.get(id=10).delete()
+
 if __name__ == '__main__':
-    # 更新
-    hero = HeroInfo.objects.get(id=19)
-    hero.hname = '猪无能'
-    hero.save()
+    # 查询和对象关联的信息
+    # 1.查询和id为1的图书关联的英雄人物信息
+    book = BookInfo.objects.get(id=1)
+    print(book)
+    heros = HeroInfo.objects.filter(hbook_id=1)
+    print(heros)
+    # 获取和book关联的英雄的数据
+    heros = book.heroinfo_set.all()
+    print(heros)
+    # 2.查询和西游记关联的英雄人物信息
+    # 3.查询和id为1的英雄人物关联的图书信息
+    # 获取和hero关联的图书对象
+    # 4.查询和孙悟空关联的图书信息
 
-    # 返回是更新行数
-    res = HeroInfo.objects.filter(hname='沙悟净').update(hname='沙僧')
-    print(res)
 
-    # 删除
-    hero = HeroInfo.objects.get(id=13)
-    
+
+
+
+
+
