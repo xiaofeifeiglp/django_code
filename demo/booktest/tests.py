@@ -122,24 +122,77 @@ from  booktest.models import BookInfo, HeroInfo
 #
 #     HeroInfo.objects.get(id=10).delete()
 
+
+# if __name__ == '__main__':
+#     '''
+#     # 查询和对象关联的信息
+#     # 1.查询和id为1的图书关联的英雄人物信息
+#     # 获取和book关联的英雄的数据
+#     # 2.查询和西游记关联的英雄人物信息
+#     # 3.查询和id为1的英雄人物关联的图书信息
+#     # 获取和hero关联的图书对象
+#     # 4.查询和孙悟空关联的图书信息
+#     '''
+#     # 查询和对象关联的信息
+#
+#     # 1.查询和id为1的图书关联的英雄人物信息
+#     heros = HeroInfo.objects.filter(hbook_id=1)
+#     print(heros)
+#     # 获取和book关联的英雄的数据
+#     book = BookInfo.objects.get(id=1)
+#     print(book)
+#     heros = book.heroinfo_set.all()
+#     print(heros)
+#     # 2.查询和西游记关联的英雄人物信息
+#     book = BookInfo.objects.get(btitle='西游记')
+#     heros = book.heroinfo_set.all()
+#     print(heros)
+#     # 3.查询和id为1的英雄人物关联的图书信息
+#     heros = HeroInfo.objects.get(id=1)
+#     print(heros)
+#     # 获取和hero关联的图书对象
+#     book = heros.hbook
+#     print(book)
+#     # 4.查询和孙悟空关联的图书信息
+#     heros = HeroInfo.objects.get(hname='孙悟空')
+#     book = heros.hbook
+#     print(book)
+
 if __name__ == '__main__':
-    # 查询和对象关联的信息
-    # 1.查询和id为1的图书关联的英雄人物信息
-    book = BookInfo.objects.get(id=1)
-    print(book)
-    heros = HeroInfo.objects.filter(hbook_id=1)
-    print(heros)
-    # 获取和book关联的英雄的数据
-    heros = book.heroinfo_set.all()
-    print(heros)
-    # 2.查询和西游记关联的英雄人物信息
-    # 3.查询和id为1的英雄人物关联的图书信息
-    # 获取和hero关联的图书对象
-    # 4.查询和孙悟空关联的图书信息
-
-
-
-
-
+    '''
+    # 通过模型类实现关联查询
+    # 1.查询图书,要求图书英雄为"孙悟空"
+    # 2.查询图书,要求图书中英雄的描述包含'八'
+    # 3.查询书名为'天龙八部'的所有英雄
+    # 4.查询图书阅读量大于30的所有英雄
+    '''
+    # # 通过模型类实现关联查询
+    # # 1.查询图书,要求图书英雄为"孙悟空"
+    # heros = HeroInfo.objects.get(hname='孙悟空')
+    # book = heros.hbook
+    # print(book)
+    #
+    # books = BookInfo.objects.filter(heroinfo__hname='孙悟空')
+    # print(books)
+    # print('----------------------------')
+    # # 2.查询图书,要求图书中英雄的描述包含'空'
+    # heros = HeroInfo.objects.get(hname__contains='空')
+    # book = heros.hbook
+    # print(book)
+    #
+    # books = BookInfo.objects.filter(heroinfo__hname__contains='空')
+    # print(books)
+    # # 3.查询书名为'天龙八部'的所有英雄
+    # book = BookInfo.objects.get(bread=36)
+    # heros = book.heroinfo_set.all()
+    # print(heros)
+    #
+    # heros = HeroInfo.objects.filter(hbook__bread=36)
+    # print(heros)
+    #
+    # # 4.查询图书阅读量大于30的所有英雄
+    #
+    # heros = HeroInfo.objects.filter(hbook__bread__gt=30)
+    # print(heros)
 
 
